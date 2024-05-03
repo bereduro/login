@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d9f6be51556309.58f1a0c6b2866.gif');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(0,0,0, 0.6);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
+            width: 400px;
+            margin: auto;
+        }
+
+        .login-form, .signup-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        .login-form h1, .signup-form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        button {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            background-color: #f5f5f515;
+        }
+
+        button {
+            background-color: #009900;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: yellow;
+        }
+
+        .create-account, .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .create-account button {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #009900;
+            color: white;
+            cursor: pointer;
+            border: none;
+            width: 60%; /* Para que ocupe el 100% del ancho */
+        }
+
+        .create-account button:hover {
+            background-color: yellow;
+        }
+
+        .password-toggle-container {
+            position: relative; /* Añadido */
+            width: 100%; /* Añadido */
+        }
+
+        .password-toggle-checkbox {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* Ajustado */
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="loginPage" class="container">
+        <form class="login-form" action="https://bereduro.github.io/inicio/index.html" method="get">
+            <h1>Iniciar sesión</h1>
+            <input type="text" placeholder="Usuario" required>
+            <div class="password-toggle-container">
+                <input type="password" id="passwordInput" placeholder="Contraseña" required>
+                <input type="checkbox" id="togglePassword" class="password-toggle-checkbox">
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+            <p class="forgot-password">¿Olvidaste tu contraseña?</p>
+            <p class="create-account">¿No tienes una cuenta? <button id="createAccountBtn">Crear una cuenta nueva</button></p>
+        </form>
+    </div>
+    
+
+    <div id="signupPage" class="container" style="display: none;">
+        <form class="signup-form">
+            <h1>Crear una cuenta</h1>
+            <input type="email" placeholder="Correo electrónico" required>
+            <div class="password-toggle-container">
+                <input type="password" id="signupPasswordInput" placeholder="Contraseña" required>
+                <input type="checkbox" id="toggleSignupPassword" class="password-toggle-checkbox">
+            </div>
+            <button type="submit">Crear</button>
+            <p class="create-account">¿Ya tienes una cuenta? <button id="loginBtn">Iniciar sesión</button></p>
+        </form>
+    </div>
+
+    <script>
+        const loginPage = document.getElementById('loginPage');
+        const signupPage = document.getElementById('signupPage');
+        const createAccountBtn = document.getElementById('createAccountBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const passwordInput = document.getElementById('passwordInput');
+        const signupPasswordInput = document.getElementById('signupPasswordInput');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleSignupPassword = document.getElementById('toggleSignupPassword');
+
+        function showSignupPage() {
+            loginPage.style.display = 'none';
+            signupPage.style.display = 'block';
+        }
+
+        function showLoginPage() {
+            signupPage.style.display = 'none';
+            loginPage.style.display = 'block';
+        }
+
+        togglePassword.addEventListener('change', function() {
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        toggleSignupPassword.addEventListener('change', function() {
+            signupPasswordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        createAccountBtn.addEventListener('click', showSignupPage);
+
+        loginBtn.addEventListener('click', showLoginPage);
+    </script>
+</body>
+</html>
